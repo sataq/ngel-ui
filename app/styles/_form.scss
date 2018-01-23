@@ -1,0 +1,65 @@
+$text-input-border: 1px solid $color-ui-border;
+$form-control-full-bleed-width: 96%;
+
+@mixin text-input-properties {
+  box-sizing: border-box;
+  margin: 0 $baseline-unit 0 0;
+  padding: $baseline-increment * 1.8;
+  border: $text-input-border;
+  background-color: $color-ui-background-default;
+}
+
+::-moz-placeholder,
+:-ms-input-placeholder,
+::-webkit-input-placeholder { color: $color-ui-text-muted; }
+
+.ngel-form {
+  border: none;
+  padding: 0;
+  margin-bottom: $baseline-unit;
+
+  &--muted {
+    background-color: $color-ui-background-muted;
+    padding: $baseline-unit;
+  }
+}
+
+.ngel-fieldset {
+  padding: $baseline-increment 0;
+  border: none;
+  display: block;
+  margin-bottom: $baseline-unit;
+
+  &--hugged { margin-bottom: 0; }
+
+  &__legend {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 3 * $baseline-increment ;
+    border-bottom: $text-input-border;
+    padding-bottom: $baseline-unit/2;
+    font-size: $h3-font-size;
+    font-weight: normal;
+    letter-spacing: $heading-letter-spacing;
+    line-height: $baseline-unit / $h3-font-size;
+  }
+}
+
+.ngel-label {
+  font-weight: $boldish;
+  display: block;
+  padding: $baseline-increment 0;
+  margin-right: $baseline-unit;
+
+  &--inline { display: inline-block; }
+  &--light { font-weight: normal;  }
+}
+
+.ngel-textbox  {
+  @include text-input-properties;
+  width: $form-control-full-bleed-width;
+  display: inline-block;
+  padding: $baseline-increment * 1.8;
+}

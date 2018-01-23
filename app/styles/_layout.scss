@@ -1,0 +1,375 @@
+$ngel-header-height: 72px; // To maintain consistency with existing header styles
+$sidebar-width: 10.5 * $baseline-unit;
+
+.ngel-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Layout should take up full viewport height even if there is little content
+  max-width: 100vw;
+  overflow-x: auto;
+  justify-content: space-between;
+
+  &__header {
+    flex-basis: $ngel-header-height;
+    flex-grow: 0;
+    z-index: 100;
+  }
+
+  &__body {
+    min-height: 100vh;
+    padding-top: $ngel-header-height;
+    margin-top: -$ngel-header-height;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__main {
+    order: 2;
+    min-width: 0; // Don't grow beyond the natural width of __body even if __main's content is wider
+    flex-basis: 100%; // Take all available
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__content {
+    padding: $baseline-unit;
+  }
+
+  &__footer {
+    border-top: 1px solid $color-ui-border;
+    padding: $baseline-unit $baseline-unit 0;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: map-get($grid-breakpoints, 'sm')) {
+      padding: $baseline-unit;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-text {
+      color: $color-ui-text-muted;
+    }
+
+    &-logo {
+      margin: $baseline-unit 0;
+      width: 118px;
+      height: 23px;
+    }
+
+    &-link {
+      text-decoration: none;
+    }
+
+    &-app-name {
+      font-size: $small-font-size;
+    }
+  }
+}
+
+.ngel-top-nav {
+  @mixin list {
+    padding: 0 $baseline-unit 0 2 * $baseline-increment;
+
+    @media (min-width: 1025px) and (max-width: 1220px) { padding: 0; }
+    @media (max-width: 1024px) { display: none; }
+  }
+
+  @mixin item {
+    display: inline-block;
+    margin: 0;
+    height: $ngel-header-height;
+    position: relative;
+
+    &:before { content: none; }
+  }
+
+  @mixin link {
+    color: $color-ui-text-light;
+    text-decoration: none;
+    font-size: ms(1);
+    padding: 0 2 *$baseline-increment;
+    line-height: $ngel-header-height;
+    display: block;
+  }
+
+  @mixin dropdown {
+    position: absolute;
+    left: -9999px;
+    background-color: $color-ui-background-default;
+    border: $baseline-increment solid $color-ui-border;
+    border-radius: $border-radius;
+    padding: 2 * $baseline-increment 3 * $baseline-increment;
+    right: auto;
+    top: 50px;
+    z-index: 10;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent $color-ui-border;
+      border-style: solid;
+      top: -2 * $baseline-increment;
+      border-width: 0 $baseline-increment $baseline-increment;
+
+      // Compensate for rounding at these screen resolutions
+      // Otherwise there is a slight gap between the arrow and the body of the dropdown
+      @media only screen and (min-width: 1601px) and (max-width: 1920px) {
+        margin-top: 1px;
+      }
+    }
+  }
+
+  @mixin subitem {
+    border-bottom: 1px solid $color-ui-border;
+    margin: 0;
+
+    &:last-child { border-bottom: none; }
+    &:before { content: none; }
+  }
+
+  @mixin sublink {
+    color: $color-ui-text-muted;
+    text-decoration: none;
+    display: block;
+    padding: $baseline-increment;
+
+    &:hover {
+      color: $color-ui-text-default;
+      text-decoration: underline;
+    }
+  }
+
+
+  $divider-gradient: linear-gradient(to bottom, $color-ui-transparent 0%, $color-ui-background-default 50%, $color-ui-transparent 100%);
+
+  width: 100%;
+  background-color: $color-ui-primary-blue;
+  height: $ngel-header-height;
+  display: flex;
+
+  &--fixed {
+    position: fixed;
+    z-index: 10;
+  }
+
+  &__logo-link {
+    width: $sidebar-width;
+    color: white;
+    margin: auto;
+    padding: 2rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+
+    @media (max-width: 1024px) {
+      max-width: 150px; // Ensure logo text lines up with second level mobile menu text
+      max-height: 100%;
+    }
+  }
+
+  &__logo {
+    width: 80%;
+    @media (max-width: 1024px) { width: 100%; }
+  }
+
+  &__mobile-buttons {
+    font-size: 0;
+    padding-right: $baseline-unit;
+    flex-grow: 1;
+    text-align: right;
+    line-height: $ngel-header-height;
+    height: $ngel-header-height;
+    display: none;
+
+    @media (max-width: 1024px) { display: block; }
+  }
+
+  &__mobile-button {
+    font-size: ms(5);
+    color: $color-ui-text-light;
+    text-decoration: none;
+    cursor: pointer;
+
+    &--search {
+      font-size: ms(3);
+      position: relative;
+      padding-right: $baseline-increment;
+      margin-right: 0;
+
+      &::before {
+        vertical-align: 20%;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        vertical-align: middle;
+        height: 100%;
+        width: 1px;
+        background-image: $divider-gradient;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    &::before {
+      margin: 0 0 0 $baseline-increment;
+    }
+  }
+
+  // Main
+  &__main-list {
+    @include list;
+    flex-basis: 100%;
+
+    @media (min-width: 1025px) and (max-width: 1220px) { padding: 0; }
+  }
+
+  &__main-item { @include item; }
+
+  &__main-link {
+    @include link;
+    @media (min-width: 1025px) and (max-width: 1220px) { font-size: $baseline-increment * 2.2; }
+
+    &--active {
+      // TODO: Add better names and see about deriving from existing variables
+      $active-top: #446eac;
+      $active-bottom: #375e98;
+      background-image: linear-gradient(to bottom, $active-top, $active-bottom);
+    }
+  }
+
+  &__main-dropdown {
+    @include dropdown;
+    width: 8 * $baseline-unit;
+
+    &::before { left: $baseline-unit; }
+
+    &:hover,
+    .ngel-top-nav__main-item:hover > & { left: auto; }
+  }
+
+  &__main-subitem { @include subitem; }
+  &__main-sublink { @include sublink; }
+
+  // Secondary
+  &__secondary-list {
+    @include list;
+    display: flex;
+    justify-content: flex-end;
+    min-width: $baseline-unit * 11.5;
+
+    @media (min-width: 1025px) and (max-width: 1220px) {
+      padding: 0;
+      min-width: $baseline-unit * 10;
+    }
+  }
+
+  &__secondary-item {
+    @include item;
+    &:first-child::before { content: none; }
+
+    &::before {
+      content: '';
+      height: 35px;
+      width: 1px;
+      position: absolute;
+      top: 18px;
+      left: 0;
+      background: $divider-gradient;
+    }
+  }
+
+  &__secondary-link {
+    @include link;
+
+    @media (min-width: 1025px) and (max-width: 1220px) { padding: 0 $baseline-increment; }
+
+    .ngel-top-nav__secondary-link__search-icon {
+      font-size: (4em / 3);
+      line-height: (3em / 4);
+      vertical-align: 20%;
+    }
+  }
+
+  &__secondary-dropdown {
+    @include dropdown;
+    min-width: $baseline-unit * 4;
+    &::before { right: $baseline-increment; }
+
+    // Hovering on secondary nav item shows dropdown
+    // Hovering on .ngel-top-nav__secondary-dropdown-search DOESN'T show dropdown
+    .ngel-top-nav__secondary-item:hover > &:not(.ngel-top-nav__secondary-dropdown-search) {
+      right: 1rem;
+      left: auto;
+    }
+
+    // Use active class to show dropdown
+    .ngel-top-nav__secondary-item > &--active {
+      right: 1rem;
+      left: auto;
+    }
+
+    &--help {
+      width: 350px;
+      margin-top: $baseline-increment;
+
+      &-header {
+        margin-bottom: $baseline-unit / 2;
+        color: $color-ui-text-muted;
+      }
+
+      &-item {
+        @include subitem;
+        border-bottom: none;
+      }
+
+      &-link {
+        @include sublink;
+        padding: 0.5rem 0;
+      }
+
+      &-left-column {
+        border-right: 1px solid $color-ui-border;
+        padding-left: 0;
+        padding-right: $baseline-unit;
+        display: inline-block;
+      }
+
+      &-right-column {
+        position: absolute;
+        display: inline-block;
+        padding-left: $baseline-unit;
+      }
+    }
+  }
+
+
+  &__secondary-subitem { @include subitem; }
+  &__secondary-sublink { @include sublink; }
+
+  &__secondary-label {
+    font-family: $serif-font-family;
+    font-size: ($baseline-unit / 2) * 1.1;
+    vertical-align: super;
+  }
+
+  &__secondary-input {
+    $border-color: rgb(238, 238, 238);
+
+    width: $baseline-unit * 10;
+    height: $baseline-unit + $baseline-increment;
+    line-height: $baseline-unit + $baseline-increment;
+    padding: 0 ($baseline-unit / 2);
+    border: 3px solid $border-color;
+  }
+}

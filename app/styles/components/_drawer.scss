@@ -1,0 +1,88 @@
+// Drawers
+.ngel-drawer {
+  height: calc(100vh - #{$ngel-header-height});
+  width: 100vw;
+  top: $ngel-header-height;
+  bottom: 0;
+  left: 100vw;
+  position: fixed;
+  z-index: 9;
+  $transparent-rgba: rgba(0, 0, 0, 0);
+  background-color: $transparent-rgba;
+  transition: 0.33s background-color ease;
+
+  &--open {
+    left: 0;
+    background-color: $color-ui-background-translucent-dark;
+  }
+
+  &--actively-closed {
+    animation: 0.33s hide-drawer-after-delay;
+  }
+
+  &__content {
+    background-color: $color-ui-background-default;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: 0.33s transform ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (min-width: 1025px) {
+      width: 50%;
+      left: 100%;
+
+      &--open {
+        transform: translate3d(-50vw, 0, 0);
+      }
+    }
+  }
+
+  &__head {
+    padding: $baseline-unit 0 0;
+    margin: 0 $baseline-unit;
+    border-bottom: 1px solid $color-ui-border;
+  }
+
+  &__close {
+    float: right;
+    line-height: 1em;
+    margin-left: 1em;
+    color: $color-ui-text-muted;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-ui-text-default;
+    }
+  }
+
+  &__body {
+    height: 100%;
+    overflow-y: auto;
+    padding: (2 * $baseline-increment) $baseline-unit $baseline-unit;
+  }
+
+  &__foot {
+    background-color: $color-ui-background-muted;
+    padding: $baseline-unit;
+    text-align: right;
+  }
+}
+
+@keyframes hide-drawer-after-delay {
+  from {
+    left: 0;
+  }
+
+  99% {
+    left: 0;
+  }
+
+  to {
+    left: 100vw;
+  }
+}

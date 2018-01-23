@@ -1,0 +1,13 @@
+@each $breakpoint, $breakpoint-size in $grid-breakpoints {
+  @include grid-breakpoints($breakpoint, $breakpoint-size) {
+    .ngel-hide--#{$breakpoint} {
+      position: absolute;
+      transform: translate(-9999px, 0);
+    }
+
+    .ngel-show--#{$breakpoint} {
+      position: initial;
+      transform: translate(0, 0);
+    }
+  }
+}

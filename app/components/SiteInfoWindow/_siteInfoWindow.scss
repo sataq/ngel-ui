@@ -1,0 +1,19 @@
+.ngel-siteinfowindow__legend { width: 67%; }
+
+.DateRangePickerInput { width: 108%; }
+
+.DayPicker_weekHeader_li:before { content: none; }
+
+.ngel-siteinfowindow__refresh { padding-left: 4rem; }
+
+.ngel-siteinfowindow__exceedMsg { color: $color-ui-text-danger; }
+
+.ngel-siteinfowindow__chart {
+  position: relative;
+
+  &--overlay {
+    position: absolute;
+    top: 30.5%;  /* chartArea top  */
+    right: 17.2%; /* chartArea right */
+  }
+}

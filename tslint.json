@@ -1,0 +1,31 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-plugin-prettier",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "member-access": false,
+    "ordered-imports": false,
+    "jsx-wrap-multiline": false,
+    "interface-name": false,
+    "arrow-parens": false,
+    "object-literal-key-quotes": false,
+    "no-console": [true, "error", "info"],
+    "object-literal-sort-keys": false,
+    "prettier": [
+      true,
+      {
+        "useTabs": false,
+        "tabWidth": 2,
+        "printWidth": 140,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    ]
+  },
+  "rulesDirectory": []
+}

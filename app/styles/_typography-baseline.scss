@@ -1,0 +1,158 @@
+$ten-pixel-root: 62.5%;
+$eleven-pixel-root: 68.75%;
+$twelve-pixel-root: 75%;
+
+$ms-base: 1.2rem;
+$ms-ratio: 1.2; // minor third
+
+@import '../../node_modules/modularscale-sass/stylesheets/modularscale';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,600italic');
+
+$baseline-ratio: 1.66667; // major sixth
+$baseline-unit: 2rem;
+$baseline-increment: $baseline-unit / 4;
+
+$sans-font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+$serif-font-family: Georgia, Times New Roman, serif;
+$boldish: 600;
+
+$body-font-family: $sans-font-family;
+$heading-letter-spacing: 0.025em;
+$small-font-size: ms(-1);
+$body-font-size: ms(0);
+$h1-font-size: ms(4);
+$h2-font-size: ms(3) - 0.1rem; // Tweak to fit into baseline without ascenders and descenders touching
+$h3-font-size: ms(2);
+$h4-font-size: ms(1);
+$h5-font-size: ms(0);
+$h6-font-size: ms(0);
+
+$border-radius: $baseline-increment / 2;
+$box-shadow: 0 0 2px 2px $color-ui-shadow;
+
+html {
+  font-size: $ten-pixel-root;
+
+  @media only screen and (min-width: 1601px) {
+    font-size: $eleven-pixel-root;
+  }
+
+  @media only screen and (min-width: 1921px) {
+    font-size: $twelve-pixel-root;
+  }
+}
+
+body {
+  font-family: $sans-font-family;
+  font-size: $body-font-size;
+  line-height: $baseline-unit / $body-font-size;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  font-weight: normal;
+  line-height: $baseline-unit * 2 / $h1-font-size; // Double the baseline due to size of h1
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+  letter-spacing: $heading-letter-spacing;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: $h2-font-size;
+  line-height: $baseline-unit / $h2-font-size;
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+  letter-spacing: $heading-letter-spacing;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: $h3-font-size;
+  line-height: $baseline-unit / $h3-font-size;
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+  letter-spacing: $heading-letter-spacing;
+}
+
+h4 {
+  font-weight: $boldish;
+  font-size: $h4-font-size;
+  line-height: $baseline-unit / $h2-font-size;
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+  letter-spacing: $heading-letter-spacing;
+}
+
+h5 {
+  font-weight: $boldish;
+  font-size: $h5-font-size;
+  line-height: $baseline-unit / $h2-font-size;
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+  letter-spacing: $heading-letter-spacing;
+}
+
+h6 {
+  font-weight: $boldish;
+  font-size: $h6-font-size;
+  line-height: $baseline-unit / $h2-font-size;
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+  letter-spacing: $heading-letter-spacing;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+}
+
+ul,
+ol {
+  padding-left: 2em;
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
+}
+
+$list-item-spacing: $baseline-ratio * 0.25 * 1em; // Hits the baseline rhythm every fourth list item.
+
+li {
+  list-style-type: none;
+  position: relative;
+  margin-bottom: $list-item-spacing;
+
+  ol,
+  ul {
+    margin-top: $list-item-spacing;
+    margin-bottom: 0;
+  }
+}
+
+li::before { position: absolute; }
+
+ul>li::before {
+  content: '\2022'; // Bullet
+  font-size: #{$baseline-ratio}em;
+  line-height: 1;
+  left: - 2em / $baseline-ratio;
+}
+
+ol {
+  counter-reset: li;
+
+  & > li::before {
+    content: counter(li);
+    counter-increment: li;
+    font-family: $serif-font-family;
+    font-size: ms(1, 1em);
+    font-style: italic;
+    line-height: ms(1, 1);
+    left: - 2em / ms(1, 1);
+  }
+}
+
+b,
+strong { font-weight: $boldish; }
+
+a { color: $color-ui-primary; }

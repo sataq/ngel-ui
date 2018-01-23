@@ -1,0 +1,41 @@
+{
+  "dev": {
+    "ORIGIN": "http://localhost:8070",
+    "NAV": {
+      "baseUrl": "http://localhost:8070",
+      "homeUrl": "/",
+      "firstUrl": "/first",
+      "secondUrl": "/second",
+      "accountUrl": "/account",
+      "setupUrl": "/setup",
+      "logoutUrl": "/signout"
+    },
+    "API_URL": {
+      "baseUrl": "http://localhost:7001",
+      "user": "/user",
+      "stations": "/stations",
+      "stationDailyData": "/station-daily-data/",
+      "googleMapUrl": "https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UW6O2WRIsSK89JDOh2m1PwbdNt1A3es"
+    }
+  },
+  "qa": {
+    "ORIGIN": "Undefined",
+    "API_URL": {
+      "baseUrl": "Undefined",
+      "user": "/user",
+      "stations": "/stations",
+      "stationDailyData": "/station-daily-data/",
+      "googleMapUrl": "https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UW6O2WRIsSK89JDOh2m1PwbdNt1A3es"
+    }
+  },
+  "prod": {
+    "ORIGIN": "Undefined",
+    "API_URL": {
+      "baseUrl": "Undefined",
+      "user": "/user",
+      "stations": "/stations",
+      "stationDailyData": "/station-daily-data/",
+      "googleMapUrl": "https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UW6O2WRIsSK89JDOh2m1PwbdNt1A3es"
+    }
+  }
+}

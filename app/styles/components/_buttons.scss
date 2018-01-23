@@ -1,0 +1,31 @@
+$button-standard-color: rgb(224, 224, 244);
+$button-cta-color: rgb(19, 133, 19);
+
+// Are these correct?
+$button-dark-text: #000;
+$button-light-text: #fff;
+
+.ngel-button {
+  font-size: $body-font-size;
+  color: $button-dark-text;
+  font-weight: 600;
+  background-color: $button-standard-color;
+  border-width: 0;
+  border-radius: $border-radius;
+  padding: $baseline-increment $baseline-increment * 6; // Top and bottom padding is 1/4 baseline.
+  line-height: $baseline-unit;
+  vertical-align: middle;
+  display: inline-block;
+  text-decoration: none;
+  transition: 0.075s linear background-color;
+
+  &:hover { background-color: mix($button-standard-color, $button-dark-text, 90%); }
+
+  &--primary {
+    background-color: $color-ui-primary;
+    color: $button-light-text;
+
+    &:hover { background-color: mix($color-ui-primary, $button-dark-text, 90%); }
+    &:disabled { background-color: $color-ui-primary; }
+  }
+}
