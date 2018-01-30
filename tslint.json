@@ -16,6 +16,7 @@
     "object-literal-key-quotes": false,
     "no-console": [true, "error", "info"],
     "object-literal-sort-keys": false,
+    "only-arrow-functions": false,
     "prettier": [
       true,
       {

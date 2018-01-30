@@ -29,9 +29,9 @@
     }
   },
   "prod": {
-    "ORIGIN": "Undefined",
+    "ORIGIN": "",
     "API_URL": {
-      "baseUrl": "Undefined",
+      "baseUrl": "",
       "user": "/user",
       "stations": "/stations",
       "stationDailyData": "/station-daily-data/",

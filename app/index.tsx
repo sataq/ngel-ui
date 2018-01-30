@@ -10,7 +10,7 @@ import './app.scss';
 
 const store = createStore(applyMiddleware(thunkMiddleware));
 
-const render = Component => {
+const render = function(Component) {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>

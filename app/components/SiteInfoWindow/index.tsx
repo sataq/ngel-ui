@@ -108,8 +108,9 @@ export class SiteInfoWindow extends React.Component<SiteInfoProps, any> {
       } else {
         this.setState({ exceedMsg: '' });
         fetch(
-          `${STATION_DAILY_DATA_URI}${this.props.station
-            .ngelId}?startDate=${this.state.startDate.valueOf()}&endDate=${this.state.endDate.valueOf()}`
+          `${STATION_DAILY_DATA_URI}${
+            this.props.station.ngelId
+          }?startDate=${this.state.startDate.valueOf()}&endDate=${this.state.endDate.valueOf()}`
         )
           .then(res => {
             if (!res.ok) {
