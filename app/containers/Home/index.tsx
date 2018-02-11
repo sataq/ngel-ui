@@ -12,7 +12,7 @@ interface HomeProps {
 
 const STATIONS_URL = `${ApiUrl.baseUrl}${ApiUrl.stations}`;
 
-export default class Home extends React.Component<HomeProps, any> {
+export default class Home extends React.PureComponent<HomeProps, any> {
   constructor(props) {
     super(props);
     this.state = {

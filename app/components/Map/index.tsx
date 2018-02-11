@@ -67,24 +67,28 @@ export default compose(
   }),
   withScriptjs,
   withGoogleMap
-)(props => (
-  <GoogleMap defaultZoom={4} defaultCenter={{ lat: 18.41923, lng: -66.15042 }}>
-    {props.stations.map(station => (
-      <Marker
-        // tslint:disable-next-line jsx-no-lambda
-        onClick={() => props.onStationClick(station)}
-        key={station.ngelId}
-        position={{ lat: station.latitude, lng: station.longitude }}
-        icon={{
-          path: google.maps.SymbolPath.CIRCLE,
-          fillColor: props.getColor(station),
-          fillOpacity: props.getFillOpacity(station),
-          scale: props.getScale(station),
-          strokeColor: props.getStrokeColor(station),
-          strokeWeight: DEFAULT_STROKE_WEIGHT,
-        }}
-      />
-    ))}
-    <SiteInfoWindow visible={props.visible} station={props.activeStation} onClose={props.onSiteInfoWindowClose} />
-  </GoogleMap>
-));
+)(props => {
+  const markers = props.stations.map(station => (
+    <Marker
+      // tslint:disable-next-line jsx-no-lambda
+      onClick={() => props.onStationClick(station)}
+      key={station.ngelId}
+      position={{ lat: station.latitude, lng: station.longitude }}
+      icon={{
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: props.getColor(station),
+        fillOpacity: props.getFillOpacity(station),
+        scale: props.getScale(station),
+        strokeColor: props.getStrokeColor(station),
+        strokeWeight: DEFAULT_STROKE_WEIGHT,
+      }}
+    />
+  ));
+
+  return (
+    <GoogleMap defaultZoom={4} defaultCenter={{ lat: 18.41923, lng: -66.15042 }}>
+      {markers}
+      <SiteInfoWindow visible={props.visible} station={props.activeStation} onClose={props.onSiteInfoWindowClose} />
+    </GoogleMap>
+  );
+});

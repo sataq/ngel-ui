@@ -46,7 +46,7 @@ const MAX_DAY_RANGE = 60;
 
 const STATION_DAILY_DATA_URI = `${ApiUrl.baseUrl}${ApiUrl.stationDailyData}`;
 
-export class SiteInfoWindow extends React.Component<SiteInfoProps, any> {
+export class SiteInfoWindow extends React.PureComponent<SiteInfoProps, any> {
   static defaultProps = {
     visible: false,
   };
